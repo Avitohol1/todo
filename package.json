@@ -9,7 +9,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@auth0/auth0-react": "^2.0.1",
     "@reduxjs/toolkit": "^1.9.3",
     "firebase": "^9.17.2",
     "nanoid": "^4.0.1",

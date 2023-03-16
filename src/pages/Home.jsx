@@ -11,7 +11,6 @@ import {
   changeTab,
   clearAll
 } from "../slices/todoSlice"
-import { useAuth0 } from '@auth0/auth0-react'
 
 const Home = () => {
     const initialTodoState = {
@@ -29,8 +28,6 @@ const Home = () => {
 
       // ~~~~~~~~~~~~~~~~~~~~~~~~ AUTH
 
-      const { loginWithRedirect, logout, user, isLoading, error } = useAuth0()
-      console.log(user)
 
       // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
