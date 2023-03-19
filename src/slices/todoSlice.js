@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { db } from "../firebase/conf"
 import { nanoid } from "nanoid"
 
 const initialState = {
     todos: [],
     completed: [],
-    activeTab: "todo"
+    activeTab: "todo",
+    isLoading: false
 }
 
 const todoSlice = createSlice({
@@ -67,6 +69,9 @@ const todoSlice = createSlice({
         clearAll: (state) => {
             state.todos = []
         }
+    },
+    extraReducers: (builder) => {
+        
     }
 })
 

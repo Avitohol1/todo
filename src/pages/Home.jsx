@@ -9,8 +9,11 @@ import {
   endEditTodo,
   completeTodo,
   changeTab,
-  clearAll
+  clearAll,
 } from "../slices/todoSlice"
+import { signOut } from 'firebase/auth'
+import { auth } from '../firebase/conf'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const initialTodoState = {
@@ -18,13 +21,15 @@ const Home = () => {
         name: "",
         description: "",
         isEditing: false,
-        isComplete: false
+        isComplete: false,
+        dueDate: null
       }
     
       const {todos, completed, activeTab} = useSelector(store => store.todo)
       const dispatch = useDispatch()
       const [todo, setTodo] = useState(initialTodoState)
       const [isAdding , setIsAdding] = useState(false)
+      const navigate = useNavigate()
 
       // ~~~~~~~~~~~~~~~~~~~~~~~~ AUTH
 
@@ -35,6 +40,7 @@ const Home = () => {
       useEffect(() => {
         console.log(completed)
       }, [completed])
+
     
       const clear = () => {
         console.log(import.meta.env.VITE_FIREBASE_API_KEY)
@@ -78,12 +84,19 @@ const Home = () => {
     
       const handleSubmit = (todo) => {
         dispatch(addTodo(todo))
+        dispatch(createTodo(todo))
         setTodo(initialTodoState)
       }
     
       const handleTabChange = (e) => {
         const tab = e.target.innerText
         dispatch(changeTab(tab))
+      }
+
+      const handleSignOut = () => {
+        signOut(auth)
+          .then(() => navigate("/welcome"))
+          .catch(err => console.log(err))
       }
     
       let content = null
@@ -179,6 +192,7 @@ const Home = () => {
           </div>
     
             {content}
+            <button onClick={handleSignOut}>sign out</button>
         </div>
     
       )
