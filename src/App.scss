@@ -1,0 +1,58 @@
+$black: #363636;
+$red: #C44536;
+$pink: #FCBFB7;
+$gray: #5f5e5e;
+$white: #F6F6F6;
+
+body {
+  background-color: $black;
+  color: #F6F6F6;
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
+@mixin btn($bg-color: $white) {
+  border: 0;
+  border-radius: 3px;
+  font-size: 21px;
+  font-weight: 400;
+  background-color: $bg-color;
+  padding: .3rem 1.5rem;
+  text-transform: capitalize;
+  &:hover {
+    cursor: pointer;
+    background-color: $gray;
+    color: $white;
+  }
+}
+
+.btn {
+  @include btn;
+}
+
+.form-container {
+  width: 30%;
+  margin: 0 auto;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  input {
+    height: 33px;
+    font-size: 18px;
+    padding-left: .7rem;
+  }
+}
+
+.add-btn:disabled {
+  cursor: not-allowed;
+}

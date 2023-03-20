@@ -20,8 +20,8 @@ const Register = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className="form-container">
+        <form onSubmit={handleSubmit} className="form register-form">
         <input 
           type="email"
           name="email"
@@ -53,8 +53,8 @@ const Register = () => {
           onChange={onChange}
           value={confirmPassword}
         />
-        <button type="submit">register</button>
-        <button type="button" onClick={() => dispatch(handleIsRegistering())}>already have an account?</button>
+        <button type="submit" className="btn">register</button>
+        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">already have an account?</button>
       </form>
     </div>
   )

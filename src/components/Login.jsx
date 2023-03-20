@@ -21,8 +21,8 @@ const Login = () => {
     }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className="form-container">
+        <form onSubmit={handleSubmit} className="form login-form">
         <input 
           type="email"
           name="email"
@@ -38,8 +38,8 @@ const Login = () => {
           onChange={onChange}
           value={password}
         />
-        <button type="submit">login</button>
-        <button type="button" onClick={() => dispatch(handleIsRegistering())}>create an account</button>
+        <button type="submit" className="btn">login</button>
+        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">create an account</button>
       </form>
     </div>
   )

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import "../App.css"
 import { useSelector, useDispatch } from 'react-redux'
 import {
   addTodo,
@@ -159,7 +158,7 @@ const Home = () => {
           {!isAdding && <div>
             <button onClick={() => setIsAdding(true)}>+</button>
             <span>add task</span>
-            <button onClick={clear}>clear</button>
+            <button onClick={clear} className="btn">clear</button>
           </div>}
     
           {isAdding && <form onSubmit={(e) => e.preventDefault()}>
@@ -177,9 +176,9 @@ const Home = () => {
               value={todo.description}
               onChange={handleChange}
             />
-            <button onClick={() => setIsAdding(false)}>cancel</button>
+            <button onClick={() => setIsAdding(false)} className="btn">cancel</button>
             <button 
-              className="add-btn" 
+              className="btn" 
               disabled={!todo.name}
               onClick={() => handleSubmit(todo)}>add
             </button>
@@ -187,12 +186,12 @@ const Home = () => {
     
           {/* tabs */}
           <div>
-            <button onClick={handleTabChange}>todo</button>
-            <button onClick={handleTabChange}>completed</button>
+            <button onClick={handleTabChange} className="btn">todo</button>
+            <button onClick={handleTabChange} className="btn">completed</button>
           </div>
     
             {content}
-            <button onClick={handleSignOut}>sign out</button>
+            <button onClick={handleSignOut} className="btn">sign out</button>
         </div>
     
       )
