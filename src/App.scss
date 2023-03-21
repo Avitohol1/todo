@@ -18,39 +18,25 @@ body {
 }
 
 
-@mixin btn($bg-color: $white) {
+@mixin btn($bg-color: $white, $text-color: $black, $hover-bg-color: $white, $hover-text-color: $white) {
   border: 0;
   border-radius: 3px;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 400;
   background-color: $bg-color;
-  padding: .3rem 1.5rem;
+  color: $text-color;
+  width: 7rem;
+  height: 2.1rem;
   text-transform: capitalize;
   &:hover {
     cursor: pointer;
-    background-color: $gray;
-    color: $white;
+    background-color: $hover-bg-color;
+    color: $hover-text-color;
   }
 }
 
 .btn {
   @include btn;
-}
-
-.form-container {
-  width: 30%;
-  margin: 0 auto;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  input {
-    height: 33px;
-    font-size: 18px;
-    padding-left: .7rem;
-  }
 }
 
 .add-btn:disabled {

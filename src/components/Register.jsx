@@ -4,6 +4,8 @@ import {
     register,
     handleIsRegistering
 } from "../slices/userSlice"
+import "../styles/LoginForm.scss"
+
 
 const Register = () => {
     const {email, confirmEmail, password, confirmPassword} = useSelector(store => store.user)
@@ -53,8 +55,8 @@ const Register = () => {
           onChange={onChange}
           value={confirmPassword}
         />
-        <button type="submit" className="btn">register</button>
-        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">already have an account?</button>
+        <button type="submit" className="action-btn">register</button>
+        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">login</button>
       </form>
     </div>
   )

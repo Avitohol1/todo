@@ -4,6 +4,7 @@ import {
     handleIsRegistering,
     login
 } from "../slices/userSlice"
+import "../styles/LoginForm.scss"
 
 const Login = () => {
 
@@ -38,8 +39,8 @@ const Login = () => {
           onChange={onChange}
           value={password}
         />
-        <button type="submit" className="btn">login</button>
-        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">create an account</button>
+        <button type="submit" className="action-btn">login</button>
+        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">Register</button>
       </form>
     </div>
   )
