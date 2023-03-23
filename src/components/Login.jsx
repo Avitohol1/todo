@@ -24,23 +24,30 @@ const Login = () => {
   return (
     <div className="form-container">
         <form onSubmit={handleSubmit} className="form login-form">
-        <input 
-          type="email"
-          name="email"
-          placeholder="email"
-          onChange={onChange}
-          value={email}
-        />
+          <div className="form-control">
+            <label htmlFor="loginEmail">email</label>
+            <input 
+              type="email"
+              name="email"
+              id="loginEmail"
+              onChange={onChange}
+              value={email}
+            />
+          </div>
 
-        <input 
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={onChange}
-          value={password}
-        />
+          <div className="form-control">
+            <label htmlFor="loginPassword">password</label>
+            <input 
+              type="password"
+              name="password"
+              id="loginPassword"
+              onChange={onChange}
+              value={password}
+            />
+          </div>
+        
         <button type="submit" className="action-btn">login</button>
-        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">Register</button>
+        <a onClick={() => dispatch(handleIsRegistering())} className="info">don't have an account yet?</a>
       </form>
     </div>
   )

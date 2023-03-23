@@ -1,3 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap');
+
+// PRIMARY COLORS
+$red-900: #610404;
+$red-800: #780A0A;
+$red-700: #911111;
+$red-600: #A61B1B;
+$red-500: #BA2525;
+$red-400: #D64545;
+$red-300: #E66A6A;
+$red-200: #F29B9B;
+$red-100: #FACDCD;
+
+$yellow-900: #8D2B0B;
+$yellow-700: #CB6E17;
+$yellow-500: #F0B429;
+$yellow-300: #FADB5F;
+$yellow-100: #FFF3C4;
+
+// NEUTRALS
+$grey-900: #27241D;
+$grey-800: #423D33;
+$grey-700: #504A40;
+$grey-600: #625D52;
+$grey-500: #857F72;
+$grey-400: #A39E93;
+$grey-300: #B8B2A7;
+$grey-200: #D3CEC4;
+$grey-100: #E8E6E1;
+$grey-0: #FAF9F7;
+
+// SUPPORTING
+$cyan-900: #044E54;
+$cyan-700: #0E7C86;
+$cyan-500: #14919B;
+$cyan-300: #38BEC9;
+
+$lime-900: #2B4005;
+$lime-700: #507712;
+$lime-500: #7BB026;
+$lime-300: #ABDB5E;
+
+
 $black: #363636;
 $red: #C44536;
 $pink: #FCBFB7;
@@ -5,9 +48,9 @@ $gray: #5f5e5e;
 $white: #F6F6F6;
 
 body {
-  background-color: $black;
+  background: rgba($grey-0, 0);
   color: #F6F6F6;
-  font-family: 'Red Hat Display', sans-serif;
+  font-family: 'Istok Web', sans-serif;
 }
 
 #root {
@@ -20,13 +63,13 @@ body {
 
 @mixin btn($bg-color: $white, $text-color: $black, $hover-bg-color: $white, $hover-text-color: $white) {
   border: 0;
-  border-radius: 3px;
-  font-size: 18px;
-  font-weight: 400;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 600;
   background-color: $bg-color;
   color: $text-color;
   width: 7rem;
-  height: 2.1rem;
+  height: 2.4rem;
   text-transform: capitalize;
   &:hover {
     cursor: pointer;

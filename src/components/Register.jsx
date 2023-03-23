@@ -24,39 +24,53 @@ const Register = () => {
   return (
     <div className="form-container">
         <form onSubmit={handleSubmit} className="form register-form">
-        <input 
-          type="email"
-          name="email"
-          placeholder="email"
-          onChange={onChange}
-          value={email}
-        />
 
-        <input 
-          type="email"
-          name="confirmEmail"
-          placeholder="confirm email"
-          onChange={onChange}
-          value={confirmEmail}
-        />
+          <div className="form-control">
+            <label htmlFor="email">email</label>
+            <input 
+              type="email"
+              name="email"
+              id="email"
+              onChange={onChange}
+              value={email}
+            />
+          </div>
 
-        <input 
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={onChange}
-          value={password}
-        />
+          <div className="form-control">
+            <label htmlFor="confirmEmail">confirm email</label>
+            <input 
+              type="email"
+              name="confirmEmail"
+              id="confirmEmail"
+              onChange={onChange}
+              value={confirmEmail}
+            />
+          </div>
 
-        <input 
-          type="password"
-          name="confirmPassword"
-          placeholder="confirm password"
-          onChange={onChange}
-          value={confirmPassword}
-        />
+          <div className="form-control">
+            <label htmlFor="password">password</label>
+            <input 
+              type="password"
+              name="password"
+              id="password"
+              onChange={onChange}
+              value={password}
+            />
+          </div>
+
+          <div className="form-control">
+            <label htmlFor="confirmPassword">confirm password</label>
+            <input 
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              onChange={onChange}
+              value={confirmPassword}
+            />
+          </div>
+
         <button type="submit" className="action-btn">register</button>
-        <button type="button" onClick={() => dispatch(handleIsRegistering())} className="btn">login</button>
+        <a onClick={() => dispatch(handleIsRegistering())} className="info">already have an account?</a>
       </form>
     </div>
   )
