@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from "react-redux"
 import {
     handleChange,
     handleIsRegistering,
+    handleError,
     login
 } from "../slices/userSlice"
 import "../styles/LoginForm.scss"
 
 const Login = () => {
 
-    const {email, password} = useSelector(store => store.user)
+    const {email, password, formError} = useSelector(store => store.user)
     const dispatch = useDispatch()
 
     const onChange = (e) => {
@@ -18,6 +19,10 @@ const Login = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(!email || !password) {
+          dispatch(handleError("please fill out all fields"))
+          return
+        }
         dispatch(login())
     }
 
@@ -45,7 +50,8 @@ const Login = () => {
               value={password}
             />
           </div>
-        
+
+        {formError && <span className="form-error">{formError}</span>}
         <button type="submit" className="action-btn">login</button>
         <a onClick={() => dispatch(handleIsRegistering())} className="info">don't have an account yet?</a>
       </form>

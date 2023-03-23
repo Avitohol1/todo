@@ -2,13 +2,20 @@ import { useDispatch, useSelector } from "react-redux"
 import {
     handleChange,
     register,
-    handleIsRegistering
+    handleIsRegistering,
+    handleError
 } from "../slices/userSlice"
 import "../styles/LoginForm.scss"
 
 
 const Register = () => {
-    const {email, confirmEmail, password, confirmPassword} = useSelector(store => store.user)
+    const {
+      email, 
+      confirmEmail, 
+      password, 
+      confirmPassword, 
+      formError
+    } = useSelector(store => store.user)
     const dispatch = useDispatch()
 
     const onChange = (e) => {
@@ -18,6 +25,18 @@ const Register = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault()
+        if(!email || !confirmEmail || !password || !confirmPassword) {
+          dispatch(handleError("please fill out all fields"))
+          return
+        }
+        if((email !== confirmEmail)) {
+          dispatch(handleError("emails don't match"))
+          return
+        }
+        if((password !== confirmPassword)) {
+          dispatch(handleError("passwords don't match"))
+          return
+        }
         dispatch(register())
     }
 
@@ -69,6 +88,7 @@ const Register = () => {
             />
           </div>
 
+        {formError && <span className="form-error">{formError}</span>}
         <button type="submit" className="action-btn">register</button>
         <a onClick={() => dispatch(handleIsRegistering())} className="info">already have an account?</a>
       </form>

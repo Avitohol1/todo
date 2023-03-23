@@ -8,7 +8,8 @@ const initialState = {
     email: "",
     confirmEmail: "",
     password: "",
-    confirmPassword: ""
+    confirmPassword: "",
+    formError: ""
 }
 
 
@@ -20,6 +21,7 @@ const userSlice = createSlice({
             const {name, value} = action.payload
             return {
                 ...state,
+                formError: "",
                 [name]: value
             }
         },
@@ -28,17 +30,23 @@ const userSlice = createSlice({
             if(email && password) {
                 if(email === confirmEmail && password === confirmPassword) {
                     createUserWithEmailAndPassword(auth, email, password)
-                        .catch(err => console.log(err))
+                        .catch(err => console.log(err.message))
                 }
             }
-            console.log(email)
+            else {
+                state.formError = "Please fill out all fields!"
+            }
+            console.log(state.formError)
             console.log(password)
         },
         login: (state, action) => {
             const {email, password} = state
             if(email && password) {
                 signInWithEmailAndPassword(auth, email, password)
-                    .catch(err => console.log(err))
+                    .catch(err => console.log(err.message))
+            }
+            else {
+                state.formError = "Please fill out all fields!"
             }
         },
         handleIsRegistering: (state) => {
@@ -46,6 +54,10 @@ const userSlice = createSlice({
                 ...state,
                 isRegistering: !state.isRegistering
             }
+        },
+        handleError: (state, action) => {
+            const errMsg = action.payload
+            state.formError = errMsg
         }
     }
 })
@@ -55,5 +67,6 @@ export const {
     handleChange,
     register,
     login,
-    handleIsRegistering
+    handleIsRegistering,
+    handleError
 } = userSlice.actions
