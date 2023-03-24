@@ -47,6 +47,12 @@ $pink: #FCBFB7;
 $gray: #5f5e5e;
 $white: #F6F6F6;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: rgba($grey-0, 0);
   color: #F6F6F6;
