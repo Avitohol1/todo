@@ -27,7 +27,7 @@ $grey-400: #A39E93;
 $grey-300: #B8B2A7;
 $grey-200: #D3CEC4;
 $grey-100: #E8E6E1;
-$grey-0: #FAF9F7;
+$grey-0: #FEFEFE; //FAF9F7
 
 // SUPPORTING
 $cyan-900: #044E54;
@@ -41,12 +41,6 @@ $lime-500: #7BB026;
 $lime-300: #ABDB5E;
 
 
-$black: #363636;
-$red: #C44536;
-$pink: #FCBFB7;
-$gray: #5f5e5e;
-$white: #F6F6F6;
-
 * {
   margin: 0;
   padding: 0;
@@ -54,20 +48,21 @@ $white: #F6F6F6;
 }
 
 body {
-  background: rgba($grey-0, 0);
-  color: #F6F6F6;
+  background: rgba($grey-100, .75);
   font-family: 'Istok Web', sans-serif;
 }
 
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
+main {
+  padding-top: 2rem;
+}
 
-@mixin btn($bg-color: $white, $text-color: $black, $hover-bg-color: $white, $hover-text-color: $white) {
+
+@mixin btn($bg-color: $grey-0, $text-color: $grey-900, $hover-bg-color: $grey-0, $hover-text-color: $grey-0) {
   border: 0;
   border-radius: 2px;
   font-size: 14px;

@@ -13,6 +13,7 @@ import {
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/conf'
 import { useNavigate } from 'react-router-dom'
+import TaskModal from '../components/TaskModal'
 
 const Home = () => {
     const initialTodoState = {
@@ -29,12 +30,6 @@ const Home = () => {
       const [todo, setTodo] = useState(initialTodoState)
       const [isAdding , setIsAdding] = useState(false)
       const navigate = useNavigate()
-
-      // ~~~~~~~~~~~~~~~~~~~~~~~~ AUTH
-
-
-      // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
     
       useEffect(() => {
         console.log(completed)
@@ -83,7 +78,6 @@ const Home = () => {
     
       const handleSubmit = (todo) => {
         dispatch(addTodo(todo))
-        dispatch(createTodo(todo))
         setTodo(initialTodoState)
       }
     
@@ -153,7 +147,7 @@ const Home = () => {
       }
     
       return (
-        <div>
+        <main>
           {/* add */}
           {!isAdding && <div>
             <button onClick={() => setIsAdding(true)}>+</button>
@@ -161,28 +155,12 @@ const Home = () => {
             <button onClick={clear} className="btn">clear</button>
           </div>}
     
-          {isAdding && <form onSubmit={(e) => e.preventDefault()}>
-            <input 
-              type="text"
-              name="name"
-              placeholder="task name"
-              value={todo.name}
-              onChange={handleChange}
-            />
-            <input 
-              type="text"
-              name="description"
-              placeholder="description"
-              value={todo.description}
-              onChange={handleChange}
-            />
-            <button onClick={() => setIsAdding(false)} className="btn">cancel</button>
-            <button 
-              className="btn" 
-              disabled={!todo.name}
-              onClick={() => handleSubmit(todo)}>add
-            </button>
-          </form>}
+          {isAdding && 
+            <TaskModal 
+              todo={todo} 
+              handleChange={handleChange} 
+              handleSubmit={handleSubmit}
+            />}
     
           {/* tabs */}
           <div>
@@ -192,7 +170,7 @@ const Home = () => {
     
             {content}
             <button onClick={handleSignOut} className="btn">sign out</button>
-        </div>
+        </main>
     
       )
 }

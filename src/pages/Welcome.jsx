@@ -18,9 +18,9 @@ const Welcome = () => {
   }, [])
 
   return (
-    <div>
+    <main>
       {isRegistering ? <Register /> : <Login />}
-    </div>
+    </main>
   )
 }
 
