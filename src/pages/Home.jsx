@@ -14,6 +14,7 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../firebase/conf'
 import { useNavigate } from 'react-router-dom'
 import TaskModal from '../components/TaskModal'
+import Task from '../components/Task'
 
 const Home = () => {
     const initialTodoState = {
@@ -82,7 +83,7 @@ const Home = () => {
       }
     
       const handleTabChange = (e) => {
-        const tab = e.target.innerText
+        const tab = e.target.innerText.toLowerCase()
         dispatch(changeTab(tab))
       }
 
@@ -122,13 +123,7 @@ const Home = () => {
             </button>
           </form>
           }
-          return <article key={id}>
-            <h2>{name}</h2>
-            {description && <span>{description}</span>}
-            <button onClick={() => beginEdit(id)}>edit</button>
-            <button onClick={() => complete(todo)}>complete</button>
-            <button onClick={() => remove({id, isComplete})}>remove</button>
-          </article>
+          return <Task key={id} todo={todo} />
         })}
       </div>
       }
@@ -137,11 +132,7 @@ const Home = () => {
         content = <div>
         {completed && completed.map(todo => {
           const {id, name, description, isComplete} = todo
-          return <article key={id}>
-            <h2>{name}</h2>
-            {description && <span>{description}</span>}
-            <button onClick={() => remove({id, isComplete})}>remove</button>
-          </article>
+          return <Task key={id} todo={todo} />
         })}
       </div>
       }
@@ -152,7 +143,6 @@ const Home = () => {
           {!isAdding && <div>
             <button onClick={() => setIsAdding(true)}>+</button>
             <span>add task</span>
-            <button onClick={clear} className="btn">clear</button>
           </div>}
     
           {isAdding && 
@@ -160,6 +150,7 @@ const Home = () => {
               todo={todo} 
               handleChange={handleChange} 
               handleSubmit={handleSubmit}
+              setIsAdding={setIsAdding}
             />}
     
           {/* tabs */}
@@ -169,7 +160,6 @@ const Home = () => {
           </div>
     
             {content}
-            <button onClick={handleSignOut} className="btn">sign out</button>
         </main>
     
       )

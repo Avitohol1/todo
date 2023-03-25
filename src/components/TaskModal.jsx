@@ -1,4 +1,4 @@
-const TaskModal = ({todo, handleChange, handleSubmit}) => {
+const TaskModal = ({todo, handleChange, handleSubmit, setIsAdding}) => {
     const {name, description} = todo
   return (
     <form onSubmit={(e) => e.preventDefault()}>

@@ -1,0 +1,56 @@
+@import "../App.scss";
+
+.task {
+    background-color: $grey-0;
+    width: calc(100vw / 3);
+    margin: 1rem auto; // change later
+    padding: .75rem 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    .info {
+        text-align: left;
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            padding: 0;
+        }
+        .date {
+            color: $grey-500;
+            font-weight: 400;
+            font-size: 16px;
+        }
+        .description {
+            margin-top: 15px;
+            inline-size: 240px;
+            overflow-wrap: break-word;
+        }
+    }
+
+    .task-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        .complete {
+            color: $cyan-300;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .edit {
+            color: $lime-500;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+        .delete {
+            color: $red-500;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
