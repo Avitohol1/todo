@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { db } from "../firebase/conf"
 import { nanoid } from "nanoid"
 
@@ -8,6 +8,8 @@ const initialState = {
     activeTab: "todo",
     isLoading: false
 }
+
+// const getTodos = c
 
 const todoSlice = createSlice({
     name: "todo",

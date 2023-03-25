@@ -54,3 +54,21 @@
         }
     }
 }
+
+@media screen and (max-width: 1140px) {
+    .task {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .task {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .task {
+        width: 90%;
+    }
+}
