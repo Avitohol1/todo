@@ -2,17 +2,10 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   addTodo,
-  removeTodo,
-  beginEditTodo,
   editTodo,
   endEditTodo,
-  completeTodo,
   changeTab,
-  clearAll,
 } from "../slices/todoSlice"
-import { signOut } from 'firebase/auth'
-import { auth } from '../firebase/conf'
-import { useNavigate } from 'react-router-dom'
 import TaskModal from '../components/TaskModal'
 import Task from '../components/Task'
 
@@ -30,25 +23,10 @@ const Home = () => {
       const dispatch = useDispatch()
       const [todo, setTodo] = useState(initialTodoState)
       const [isAdding , setIsAdding] = useState(false)
-      const navigate = useNavigate()
     
       useEffect(() => {
         console.log(completed)
       }, [completed])
-
-    
-      const clear = () => {
-        console.log(import.meta.env.VITE_FIREBASE_API_KEY)
-        dispatch(clearAll())
-      }
-    
-      const remove = ({id, isComplete}) => {
-        dispatch(removeTodo({id, isComplete}))
-      }
-    
-      const beginEdit = (id) => {
-        dispatch(beginEditTodo(id))
-      }
     
       const edit = (e, id) => {
         const {name, value} = e.target
@@ -57,14 +35,6 @@ const Home = () => {
     
       const endEdit = (id) => {
         dispatch(endEditTodo(id))
-      }
-    
-      const complete = (todo) => {
-        const completedTodo = {
-          ...todo,
-          isComplete: true
-        }
-        dispatch(completeTodo(completedTodo))
       }
     
       const handleChange = (e) => {
@@ -85,12 +55,6 @@ const Home = () => {
       const handleTabChange = (e) => {
         const tab = e.target.innerText.toLowerCase()
         dispatch(changeTab(tab))
-      }
-
-      const handleSignOut = () => {
-        signOut(auth)
-          .then(() => navigate("/welcome"))
-          .catch(err => console.log(err))
       }
     
       let content = null
@@ -131,8 +95,7 @@ const Home = () => {
       if(activeTab === "completed") {
         content = <div>
         {completed && completed.map(todo => {
-          const {id, name, description, isComplete} = todo
-          return <Task key={id} todo={todo} />
+          return <Task key={todo.id} todo={todo} />
         })}
       </div>
       }
