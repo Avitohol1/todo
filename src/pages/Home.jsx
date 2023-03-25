@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { db } from "../firebase/conf"
+import { set, ref } from "firebase/database"
+import { uid } from "uid"
 import {
   addTodo,
   editTodo,
@@ -49,6 +52,11 @@ const Home = () => {
     
       const handleSubmit = (todo) => {
         dispatch(addTodo(todo))
+        const uuid = uid()
+        set(ref(db, `/${uuid}`), {
+          todo,
+          uuid
+        })
         setTodo(initialTodoState)
       }
     

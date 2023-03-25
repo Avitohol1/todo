@@ -1,8 +1,6 @@
 import { beginEditTodo, completeTodo, removeTodo } from "../slices/todoSlice"
 import { useDispatch } from "react-redux"
 import { HiCheck, HiTrash, HiOutlinePencilAlt } from "react-icons/hi"
-import { FaEdit } from "react-icons/fa"
-import { ImCross } from 'react-icons/im'
 import "../styles/Task.scss"
 
 const Task = ({todo}) => {
