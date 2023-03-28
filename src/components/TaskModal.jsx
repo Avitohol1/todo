@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { uid } from "uid"
 import { auth, db } from "../firebase/conf"
 import { handleIsAdding } from "../slices/todoSlice"
-
+import "../styles/TaskModal.scss"
+import Modal from "./Modal"
 
 const TaskModal = () => {
     const initialTodoState = {
@@ -49,28 +50,38 @@ const TaskModal = () => {
         setTodo(initialTodoState)
     }
   return (
-    <form>
-        <input 
-            type="text"
-            name="name"
-            placeholder="task name"
-            value={todo.name}
-            onChange={handleChange}
-        />
-        <input 
-            type="text"
-            name="description"
-            placeholder="description"
-            value={todo.description}
-            onChange={handleChange}
-        />
-        <button onClick={() => handleIsAdding()} className="btn">cancel</button>
-        <button 
-            className="btn" 
-            disabled={!todo.name}
-            onClick={handleSubmit}>add
-        </button>
-    </form>
+    <Modal>
+        <form className="task-form" onSubmit={(e) => e.preventDefault()}>
+            <div className="form-control">
+                <label htmlFor="name">name</label>
+                <input 
+                    type="text"
+                    name="name"
+                    id="name"
+                    value={todo.name}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-control">
+                <label htmlFor="description">description</label>
+                <input 
+                    type="text"
+                    name="description"
+                    id="description"
+                    value={todo.description}
+                    onChange={handleChange}
+                />
+            </div>         
+            <div className="taskModal-btns">
+                <button onClick={() => handleIsAdding()} className="btn">cancel</button>
+                <button 
+                    className="btn" 
+                    disabled={!todo.name}
+                    onClick={handleSubmit}>add
+                </button>
+            </div> 
+        </form>
+    </Modal>
   )
 }
 

@@ -14,7 +14,7 @@ import EditTaskModal from '../components/EditTaskModal'
 
 const Home = () => {
    
-      const {todos, completed, activeTab, isLoading} = useSelector(store => store.todo)
+      const {todos, completed, activeTab, isLoading, isEditing} = useSelector(store => store.todo)
       const dispatch = useDispatch()
 
       const dbRef = collection(db, "users", auth.currentUser.uid, "todos")
@@ -47,7 +47,7 @@ const Home = () => {
       if(activeTab === "todo") {
         content = <div>
         {todos && todos.map(todo => {
-          const {id, name, description, isEditing, isComplete} = todo
+          const {id, name, description, isComplete} = todo
           if(isEditing) {
             return <EditTaskModal id={id}/>
           }

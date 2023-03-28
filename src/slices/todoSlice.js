@@ -5,6 +5,7 @@ const initialState = {
     completed: [],
     activeTab: "todo",
     isAdding: false,
+    isEditing: false,
     isLoading: false,
     error: ""
 }
@@ -26,15 +27,7 @@ const todoSlice = createSlice({
             }
         },
         beginEditTodo: (state, action) => {
-            state.todos = state.todos.map(todo => {
-                if(todo.id === action.payload) {
-                    return {
-                        ...todo, 
-                        isEditing: true
-                    }
-                }
-                return {...todo}
-            })
+            state.isEditing = true
         },
         editTodo: (state, action) => {
             const {id, name, value} = action.payload
@@ -61,6 +54,10 @@ const todoSlice = createSlice({
         handleIsAdding: (state, action) => {
             state.isAdding = !state.isAdding
         },
+        close: (state, action) => {
+            state.isAdding = false
+            state.isEditing = false
+        },
         handleLoading: (state, action) => {
             state.isLoading = action.payload
         },
@@ -85,5 +82,6 @@ export const {
     clearAll,
     handleIsAdding,
     handleLoading,
+    close,
     setTodos
 } = todoSlice.actions
