@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
-import { auth } from "../firebase/conf"
+import { onValue, ref } from "firebase/database"
+import { auth, db } from "../firebase/conf"
 
 const initialState = {
     isLoading: false,

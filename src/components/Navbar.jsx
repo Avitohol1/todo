@@ -12,8 +12,6 @@ const Navbar = () => {
             .catch(err => console.log(err))
     }
 
-    console.log(auth.currentUser)
-
   return (
     <nav className="nav">
         <a href="#" className="logo">LOGO</a>

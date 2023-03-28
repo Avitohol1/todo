@@ -2,6 +2,8 @@ import { beginEditTodo, completeTodo, removeTodo } from "../slices/todoSlice"
 import { useDispatch } from "react-redux"
 import { HiCheck, HiTrash, HiOutlinePencilAlt } from "react-icons/hi"
 import "../styles/Task.scss"
+import { deleteDoc, doc } from "firebase/firestore"
+import { auth, db } from "../firebase/conf"
 
 const Task = ({todo}) => {
   const {id, name, description, isComplete} = todo
@@ -15,7 +17,11 @@ const Task = ({todo}) => {
     dispatch(completeTodo(completedTodo))
   }
 
-  console.log(todo)
+  const deleteTodo = async (id) => {
+    const docRef = doc(db, "users", auth.currentUser.uid, "todos", id)
+    await deleteDoc(docRef)
+  }
+
 
   return (
     <article className="task">
@@ -31,7 +37,7 @@ const Task = ({todo}) => {
         {!isComplete && <span  className="edit" onClick={() => dispatch(beginEditTodo(id))}>
           <HiOutlinePencilAlt size={24} />
         </span>}
-        <span className="delete" onClick={() => dispatch(removeTodo({id, isComplete}))}>
+        <span className="delete" onClick={() => deleteTodo(id)}>
           <HiTrash size={24} />
         </span>
       </div>
