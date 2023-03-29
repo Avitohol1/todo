@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 const initialState = {
     todos: [],
     completed: [],
+    editingTodo: {},
     activeTab: "todo",
     isAdding: false,
     isEditing: false,
@@ -28,22 +29,29 @@ const todoSlice = createSlice({
         },
         beginEditTodo: (state, action) => {
             state.isEditing = true
+            state.editingTodo = {
+                ...action.payload
+            }
         },
         editTodo: (state, action) => {
-            const {id, name, value} = action.payload
+            const editedTodo = action.payload
             state.todos.map(todo => {
-                if(todo.id === id) {
-                    todo[name] = value
+                if(todo.id === editedTodo.id) {
+                    return {
+                        ...editedTodo
+                    }
                 }
             })
+            state.editingTodo = {}
+            // const {id, name, value} = action.payload
+            // state.todos.map(todo => {
+            //     if(todo.id === id) {
+            //         todo[name] = value
+            //     }
+            // })
         },
         endEditTodo: (state, action) => {
-            console.log(action.payload)
-            state.todos.map(todo => {
-                if(todo.id === action.payload) {
-                    todo.isEditing = false
-                }
-            })
+            state.isEditing = false
         },
         completeTodo: (state, action) => {
             const todo = action.payload

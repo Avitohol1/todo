@@ -1,32 +1,47 @@
 import { doc, updateDoc } from "firebase/firestore"
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { auth, db } from "../firebase/conf"
-import { editTodo, endEditTodo, handleLoading } from "../slices/todoSlice"
+import { close, editTodo, endEditTodo, handleLoading } from "../slices/todoSlice"
 import Modal from "./Modal"
 import "../styles/TaskModal.scss"
+import { useState } from "react"
 
-const EditTaskModal = ({ id }) => {
-    const {todos} = useSelector(store => store.todo)
-    const todo = todos.find(todo => todo.id === id)
+const EditTaskModal = () => {
+    const {editingTodo} = useSelector(store => store.todo)
+    const {id} = editingTodo
+    const [localTodo, setLocalTodo] = useState(editingTodo)
     const dispatch = useDispatch()
     
     const handleSubmit = async () => {
+        console.log(localTodo.name)
+        console.log(editingTodo.name)
+        if((localTodo.name === editingTodo.name) && (localTodo.description === editingTodo.description)) {
+            dispatch(close())
+            return
+        }
         const docRef = doc(db, "users", auth.currentUser.uid, "todos", id)
         dispatch(handleLoading(true))
         try {
-            await updateDoc(docRef, {...todo})
-            dispatch(endEditTodo(id))
+            await updateDoc(docRef, {...localTodo})
+            dispatch(editTodo(localTodo))
         }
         catch(err) {
             console.log(err)
             dispatch(handleLoading(false))
         }
+        setLocalTodo({})
+        dispatch(endEditTodo())
         dispatch(handleLoading(false))
     }
 
     const handleChange = (e) => {
         const {name, value} = e.target
-        dispatch(editTodo({id, name, value}))
+        setLocalTodo(localTodo => {
+            return {
+                ...localTodo, 
+                [name]: value
+            }
+        })
     }
 
   return (
@@ -38,7 +53,7 @@ const EditTaskModal = ({ id }) => {
                     type="text"
                     name="name"
                     id="name"
-                    value={todo.name}
+                    value={localTodo.name}
                     onChange={handleChange}
                 />
             </div>
@@ -48,13 +63,13 @@ const EditTaskModal = ({ id }) => {
                     type="text"
                     name="description"
                     id="description"
-                    value={todo.description}
+                    value={localTodo.description}
                     onChange={handleChange}
                 />
             </div>      
 
             <div className="taskModal-btns">
-                <button className="btn" onClick={handleSubmit}>cancel</button>
+                <button className="btn" onClick={() => dispatch(close())}>cancel</button>
                 <button 
                     className="btn" 
                     onClick={handleSubmit}>edit

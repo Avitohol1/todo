@@ -34,7 +34,7 @@ const Task = ({todo}) => {
         {!isComplete && <span className="complete" onClick={() => complete(todo)}>
           <HiCheck size={24} />
         </span>}
-        {!isComplete && <span  className="edit" onClick={() => dispatch(beginEditTodo(id))}>
+        {!isComplete && <span  className="edit" onClick={() => dispatch(beginEditTodo(todo))}>
           <HiOutlinePencilAlt size={24} />
         </span>}
         <span className="delete" onClick={() => deleteTodo(id)}>

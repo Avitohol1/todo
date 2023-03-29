@@ -43,17 +43,14 @@ const Home = () => {
       if(isLoading) {
         return <h1>Loading...</h1>
       }
-    
       if(activeTab === "todo") {
-        content = <div>
-        {todos && todos.map(todo => {
-          const {id, name, description, isComplete} = todo
-          if(isEditing) {
-            return <EditTaskModal id={id}/>
-          }
-          return <Task key={id} todo={todo} />
-        })}
-      </div>
+        content = 
+        <div>
+          {isEditing && <EditTaskModal />}
+          {todos && todos.map(todo => {
+            return <Task key={todo.id} todo={todo} />
+          })}
+        </div>
       }
     
       if(activeTab === "completed") {

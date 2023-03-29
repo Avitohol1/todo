@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { uid } from "uid"
 import { auth, db } from "../firebase/conf"
-import { handleIsAdding } from "../slices/todoSlice"
+import { close, handleIsAdding } from "../slices/todoSlice"
 import "../styles/TaskModal.scss"
 import Modal from "./Modal"
 
@@ -73,7 +73,7 @@ const TaskModal = () => {
                 />
             </div>         
             <div className="taskModal-btns">
-                <button onClick={() => handleIsAdding()} className="btn">cancel</button>
+                <button onClick={() => dispatch(close())} className="btn">cancel</button>
                 <button 
                     className="btn" 
                     disabled={!todo.name}
