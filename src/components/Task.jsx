@@ -1,20 +1,26 @@
-import { beginEditTodo, completeTodo, removeTodo } from "../slices/todoSlice"
+import { beginEditTodo, handleLoading } from "../slices/todoSlice"
 import { useDispatch } from "react-redux"
 import { HiCheck, HiTrash, HiOutlinePencilAlt } from "react-icons/hi"
 import "../styles/Task.scss"
-import { deleteDoc, doc } from "firebase/firestore"
+import { deleteDoc, doc, updateDoc } from "firebase/firestore"
 import { auth, db } from "../firebase/conf"
 
 const Task = ({todo}) => {
   const {id, name, description, isComplete} = todo
   const dispatch = useDispatch()
 
-  const complete = (todo) => { 
-    const completedTodo = {
-      ...todo,
-      isComplete: true
+  const complete = async (todo) => { 
+    const docRef = doc(db, "users", auth.currentUser.uid, "todos", id)
+    const completedTodo = {...todo, isComplete: true}
+    dispatch(handleLoading(true))
+    try {
+        await updateDoc(docRef, {...completedTodo})
     }
-    dispatch(completeTodo(completedTodo))
+    catch(err) {
+        console.log(err)
+        dispatch(handleLoading(false))
+    }
+    dispatch(handleLoading(false))
   }
 
   const deleteTodo = async (id) => {

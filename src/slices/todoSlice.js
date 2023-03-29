@@ -16,7 +16,11 @@ const todoSlice = createSlice({
     initialState,
     reducers: {
         setTodos: (state, action) => {
-            state.todos = action.payload
+            const data = action.payload
+            const completedTodos = [...data.filter(todo => todo.isComplete)]
+            const todos = [...data.filter(todo => !todo.isComplete)]
+            state.completed = completedTodos
+            state.todos = todos
         },
         removeTodo: (state, action) => {
             const {id, isComplete} = action.payload
@@ -53,12 +57,6 @@ const todoSlice = createSlice({
         endEditTodo: (state, action) => {
             state.isEditing = false
         },
-        completeTodo: (state, action) => {
-            const todo = action.payload
-            const {id} = todo
-            state.todos = state.todos.filter(todo => todo.id !== id)
-            state.completed.push(action.payload)
-        },
         handleIsAdding: (state, action) => {
             state.isAdding = !state.isAdding
         },
@@ -85,7 +83,6 @@ export const {
     beginEditTodo,
     editTodo,
     endEditTodo,
-    completeTodo,
     changeTab,
     clearAll,
     handleIsAdding,

@@ -13,8 +13,6 @@ const EditTaskModal = () => {
     const dispatch = useDispatch()
     
     const handleSubmit = async () => {
-        console.log(localTodo.name)
-        console.log(editingTodo.name)
         if((localTodo.name === editingTodo.name) && (localTodo.description === editingTodo.description)) {
             dispatch(close())
             return
