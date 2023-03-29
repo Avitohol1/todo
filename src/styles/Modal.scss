@@ -17,7 +17,7 @@
     flex-direction: column;
     align-items: center;
     background-color: $grey-0;
-    width: 400px;
+    width: calc(100vw / 3);
     height: 300px;
     padding-top: 2em;
     top: 25%;
@@ -25,4 +25,17 @@
     transform: translateX(-50%);
     z-index: 30;
     box-shadow: 4px 4px 16px 0px rgba($grey-900, 0.9);
+}
+
+
+@media screen and (max-width: 1080px) {
+    .task-modal {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .task-modal {
+        width: 95%;
+    }
 }

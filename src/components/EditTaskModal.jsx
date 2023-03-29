@@ -69,7 +69,7 @@ const EditTaskModal = () => {
             <div className="taskModal-btns">
                 <button className="btn" onClick={() => dispatch(close())}>cancel</button>
                 <button 
-                    className="btn" 
+                    className="action-btn" 
                     onClick={handleSubmit}>edit
                 </button>
             </div>

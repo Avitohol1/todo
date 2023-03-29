@@ -75,7 +75,7 @@ const TaskModal = () => {
             <div className="taskModal-btns">
                 <button onClick={() => dispatch(close())} className="btn">cancel</button>
                 <button 
-                    className="btn" 
+                    className="action-btn" 
                     disabled={!todo.name}
                     onClick={handleSubmit}>add
                 </button>
