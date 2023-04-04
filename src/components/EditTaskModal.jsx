@@ -5,25 +5,29 @@ import { close, editTodo, endEditTodo, handleLoading } from "../slices/todoSlice
 import Modal from "./Modal"
 import "../styles/TaskModal.scss"
 import { useState } from "react"
+import FormInput from "./FormInput"
 
 const EditTaskModal = () => {
-    const {editingTodo} = useSelector(store => store.todo)
-    const {id} = editingTodo
+    const { editingTodo } = useSelector((store) => store.todo)
+    const { id } = editingTodo
     const [localTodo, setLocalTodo] = useState(editingTodo)
     const dispatch = useDispatch()
-    
-    const handleSubmit = async () => {
-        if((localTodo.name === editingTodo.name) && (localTodo.description === editingTodo.description)) {
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        if (
+            localTodo.name === editingTodo.name &&
+            localTodo.description === editingTodo.description
+        ) {
             dispatch(close())
             return
         }
         const docRef = doc(db, "users", auth.currentUser.uid, "todos", id)
         dispatch(handleLoading(true))
         try {
-            await updateDoc(docRef, {...localTodo})
+            await updateDoc(docRef, { ...localTodo })
             dispatch(editTodo(localTodo))
-        }
-        catch(err) {
+        } catch (err) {
             console.log(err)
             dispatch(handleLoading(false))
         }
@@ -33,50 +37,44 @@ const EditTaskModal = () => {
     }
 
     const handleChange = (e) => {
-        const {name, value} = e.target
-        setLocalTodo(localTodo => {
+        const { name, value } = e.target
+        setLocalTodo((localTodo) => {
             return {
-                ...localTodo, 
-                [name]: value
+                ...localTodo,
+                [name]: value,
             }
         })
     }
 
-  return (
-    <Modal>
-        <form className="task-form" onSubmit={(e) => e.preventDefault()}>
-            <div className="form-control">
-            <label htmlFor="name">name</label>
-                <input 
-                    type="text"
+    return (
+        <Modal>
+            <form className="task-form" onSubmit={handleSubmit}>
+                <FormInput
                     name="name"
-                    id="name"
+                    labelText="name"
                     value={localTodo.name}
-                    onChange={handleChange}
-                />
-            </div>
-            <div className="form-control">
-            <label htmlFor="description">description</label>
-                <input 
                     type="text"
-                    name="description"
-                    id="description"
-                    value={localTodo.description}
-                    onChange={handleChange}
+                    handleInputChange={handleChange}
                 />
-            </div>      
+                <FormInput
+                    name="description"
+                    labelText="description"
+                    value={localTodo.description}
+                    type="text"
+                    handleInputChange={handleChange}
+                />
 
-            <div className="taskModal-btns">
-                <button className="btn" onClick={() => dispatch(close())}>cancel</button>
-                <button 
-                    className="action-btn" 
-                    onClick={handleSubmit}>edit
-                </button>
-            </div>
-        </form>
-    </Modal>
-
-  )
+                <div className="taskModal-btns">
+                    <button className="btn" onClick={() => dispatch(close())}>
+                        cancel
+                    </button>
+                    <button type="submit" className="action-btn">
+                        edit
+                    </button>
+                </div>
+            </form>
+        </Modal>
+    )
 }
 
 export default EditTaskModal
