@@ -1,7 +1,8 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { changeTab } from "../slices/todoSlice"
 
 const Tab = ({ text }) => {
+    const { activeTab } = useSelector((store) => store.todo)
     const dispatch = useDispatch()
 
     const handleTabChange = () => {
@@ -11,7 +12,10 @@ const Tab = ({ text }) => {
 
     return (
         <>
-            <button onClick={handleTabChange} className="btn">
+            <button
+                onClick={handleTabChange}
+                className={`btn ${activeTab === text ? "active" : ""}`}
+            >
                 {text}
             </button>
         </>

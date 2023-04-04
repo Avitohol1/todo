@@ -7,11 +7,11 @@
     width: 100%;
     height: 100vh;
     z-index: 20;
-    background-color: rgba($black, .88);
+    background-color: rgba($black, 0.88);
     cursor: pointer;
 }
 
-.task-modal {
+.todo-modal {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -27,15 +27,14 @@
     box-shadow: 4px 4px 16px 0px rgba($grey-900, 0.9);
 }
 
-
 @media screen and (max-width: 1080px) {
-    .task-modal {
+    .todo-modal {
         width: 60%;
     }
 }
 
 @media screen and (max-width: 468px) {
-    .task-modal {
+    .todo-modal {
         width: 95%;
     }
 }

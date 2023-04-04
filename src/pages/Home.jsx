@@ -31,7 +31,7 @@ const Home = () => {
             {/* add */}
             {isAdding && <TodoModal />}
             {/* tabs */}
-            <div>
+            <div className="tabs">
                 <Tab text="todo" />
                 <Tab text="completed" />
             </div>

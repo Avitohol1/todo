@@ -1,0 +1,27 @@
+@import "../App.scss";
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    font-weight: 400;
+    .btn {
+        font-weight: 400;
+        letter-spacing: 1px;
+        transition: linear 0.15s;
+    }
+    .btn:hover {
+        color: #14919b;
+        transition: linear 0.15s;
+    }
+    .btn.active {
+        background-color: $cyan-500;
+        color: $grey-0;
+        transition: linear 0.15s;
+        &:hover {
+            transition: linear 0.15s;
+            background-color: $cyan-700;
+        }
+    }
+}

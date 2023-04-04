@@ -52,6 +52,13 @@
                 cursor: pointer;
             }
         }
+        span {
+            transition: 0.15s linear;
+            &:hover {
+                transform: scale(120%);
+                transition: 0.15s linear;
+            }
+        }
     }
 }
 
