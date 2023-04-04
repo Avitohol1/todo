@@ -1,14 +1,14 @@
 import { doc, setDoc } from "firebase/firestore"
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { uid } from "uid"
 import { auth, db } from "../firebase/conf"
 import { close, handleIsAdding } from "../slices/todoSlice"
-import "../styles/TaskModal.scss"
+import "../styles/TodoModal.scss"
 import Modal from "./Modal"
 import FormInput from "./FormInput"
 
-const TaskModal = () => {
+const TodoModal = () => {
     const initialTodoState = {
         id: "",
         name: "",
@@ -44,7 +44,7 @@ const TaskModal = () => {
     }
     return (
         <Modal>
-            <form className="task-form" onSubmit={(e) => e.preventDefault()}>
+            <form className="todo-form" onSubmit={(e) => e.preventDefault()}>
                 <FormInput
                     name="name"
                     labelText="name"
@@ -59,7 +59,7 @@ const TaskModal = () => {
                     type="text"
                     handleInputChange={handleChange}
                 />
-                <div className="taskModal-btns">
+                <div className="todoModal-btns">
                     <button onClick={() => dispatch(close())} className="btn">
                         cancel
                     </button>
@@ -76,4 +76,4 @@ const TaskModal = () => {
     )
 }
 
-export default TaskModal
+export default TodoModal

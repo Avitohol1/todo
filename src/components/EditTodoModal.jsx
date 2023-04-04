@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { auth, db } from "../firebase/conf"
 import { close, editTodo, endEditTodo, handleLoading } from "../slices/todoSlice"
 import Modal from "./Modal"
-import "../styles/TaskModal.scss"
+import "../styles/TodoModal.scss"
 import { useState } from "react"
 import FormInput from "./FormInput"
 
-const EditTaskModal = () => {
+const EditTodoModal = () => {
     const { editingTodo } = useSelector((store) => store.todo)
     const { id } = editingTodo
     const [localTodo, setLocalTodo] = useState(editingTodo)
@@ -48,7 +48,7 @@ const EditTaskModal = () => {
 
     return (
         <Modal>
-            <form className="task-form" onSubmit={handleSubmit}>
+            <form className="todo-form" onSubmit={handleSubmit}>
                 <FormInput
                     name="name"
                     labelText="name"
@@ -64,7 +64,7 @@ const EditTaskModal = () => {
                     handleInputChange={handleChange}
                 />
 
-                <div className="taskModal-btns">
+                <div className="todoModal-btns">
                     <button className="btn" onClick={() => dispatch(close())}>
                         cancel
                     </button>
@@ -77,4 +77,4 @@ const EditTaskModal = () => {
     )
 }
 
-export default EditTaskModal
+export default EditTodoModal

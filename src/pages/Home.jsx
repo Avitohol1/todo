@@ -5,7 +5,7 @@ import { handleLoading, setTodos } from "../slices/todoSlice"
 import { collection, onSnapshot } from "firebase/firestore"
 import Todos from "../components/Todos"
 import Tab from "../components/Tab"
-import TaskModal from "../components/TaskModal"
+import TodoModal from "../components/TodoModal"
 
 const Home = () => {
     const { isLoading, isAdding } = useSelector((store) => store.todo)
@@ -29,7 +29,7 @@ const Home = () => {
     return (
         <main>
             {/* add */}
-            {isAdding && <TaskModal />}
+            {isAdding && <TodoModal />}
             {/* tabs */}
             <div>
                 <Tab text="todo" />

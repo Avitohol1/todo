@@ -1,7 +1,7 @@
 @import "../App.scss";
 
-.task-modal {
-    .task-form {
+.todo-modal {
+    .todo-form {
         display: flex;
         flex-direction: column;
         width: 75%;
@@ -24,11 +24,11 @@
                 width: 100%;
                 border: 1.5px solid $grey-200;
                 height: 40px;
-                padding-left: .75rem;
+                padding-left: 0.75rem;
                 border-radius: 2px;
                 background-color: $grey-0;
-    
-                &:focus{
+
+                &:focus {
                     outline: none;
                     border: 2px solid $cyan-500;
                     -webkit-box-shadow: none !important;
@@ -42,33 +42,35 @@
                 }
             }
         }
-        .taskModal-btns {
+        .todoModal-btns {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             .action-btn {
                 @include btn(
-                    $bg-color: rgba($red-600, 0.9), 
+                    $bg-color: rgba($red-600, 0.9),
                     $text-color: $grey-0,
                     $hover-bg-color: $red-600,
-                    $hover-text-color: $grey-0);
+                    $hover-text-color: $grey-0
+                );
             }
             .btn {
                 @include btn(
-                    $bg-color: none, 
+                    $bg-color: none,
                     $text-color: $red-600,
                     $hover-bg-color: none,
-                    $hover-text-color: $red-300);
-                    border: 1px solid $grey-200;
-                    font-weight: 400;
+                    $hover-text-color: $red-300
+                );
+                border: 1px solid $grey-200;
+                font-weight: 400;
             }
         }
     }
 }
 
 @media screen and (max-width: 468px) {
-    .task-modal {
-        .task-form {
+    .todo-modal {
+        .todo-form {
             width: 80%;
         }
     }

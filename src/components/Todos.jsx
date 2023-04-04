@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
-import Task from "./Task"
-import EditTaskModal from "./EditTaskModal"
+import EditTodoModal from "./EditTodoModal"
+import Todo from "./Todo"
 
 const Todos = () => {
     const { todos, completed, activeTab, isEditing } = useSelector((store) => store.todo)
@@ -8,10 +8,10 @@ const Todos = () => {
     if (activeTab === "todo") {
         return (
             <div>
-                {isEditing && <EditTaskModal />}
+                {isEditing && <EditTodoModal />}
                 {todos &&
                     todos.map((todo) => {
-                        return <Task key={todo.id} todo={todo} />
+                        return <Todo key={todo.id} todo={todo} />
                     })}
             </div>
         )
@@ -21,7 +21,7 @@ const Todos = () => {
             <div>
                 {completed &&
                     completed.map((todo) => {
-                        return <Task key={todo.id} todo={todo} />
+                        return <Todo key={todo.id} todo={todo} />
                     })}
             </div>
         )
