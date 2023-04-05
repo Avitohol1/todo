@@ -1,9 +1,10 @@
 import { handleChange } from "../slices/userSlice"
 import { useDispatch, useSelector } from "react-redux"
+import "../styles/LoginForm.scss"
 
 const FormInput = ({ name, labelText, value, type, handleInputChange }) => {
     const { formError } = useSelector((store) => store.user)
-    const errClass = formError
+    const { errElementIds } = formError
     const dispatch = useDispatch()
 
     const onChange = (e) => {
@@ -20,7 +21,10 @@ const FormInput = ({ name, labelText, value, type, handleInputChange }) => {
                 id={name}
                 onChange={handleInputChange ? handleInputChange : onChange}
                 className={
-                    errClass === "all" || errClass === name || errClass === `${name}s`
+                    (errElementIds === "all" ||
+                        errElementIds === name ||
+                        errElementIds === `${name}s`) &&
+                    !value
                         ? "error"
                         : ""
                 }
