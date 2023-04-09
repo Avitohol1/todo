@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux"
 import { auth } from "../firebase/conf"
 import { signOut } from "firebase/auth"
 import { handleIsAdding } from "../slices/todoSlice"
+import logo from "../assets/logo.svg"
 
 const Navbar = () => {
     const navigate = useNavigate()
@@ -17,9 +18,7 @@ const Navbar = () => {
 
     return (
         <nav className="nav">
-            <a href="#" className="logo">
-                LOGO
-            </a>
+            <img className="logo" alt="to do" src={logo} />
             {auth.currentUser && (
                 <>
                     <ul className="nav-actions">
