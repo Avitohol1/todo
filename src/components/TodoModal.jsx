@@ -7,6 +7,7 @@ import { close, handleIsAdding } from "../slices/todoSlice"
 import "../styles/TodoModal.scss"
 import Modal from "./Modal"
 import FormInput from "./FormInput"
+import DatePicker from "react-date-picker"
 
 const TodoModal = () => {
     const initialTodoState = {
@@ -15,7 +16,7 @@ const TodoModal = () => {
         description: "",
         isEditing: false,
         isComplete: false,
-        dueDate: "",
+        dueDate: new Date(),
     }
 
     const [todo, setTodo] = useState(initialTodoState)
@@ -44,6 +45,10 @@ const TodoModal = () => {
     }
     return (
         <Modal>
+            <DatePicker
+                onChange={() => console.log(initialTodoState.dueDate)}
+                value={initialTodoState.dueDate}
+            />
             <form className="todo-form" onSubmit={(e) => e.preventDefault()}>
                 <FormInput
                     name="name"
